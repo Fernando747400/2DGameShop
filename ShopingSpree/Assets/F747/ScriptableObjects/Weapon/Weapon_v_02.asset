@@ -16,8 +16,8 @@ MonoBehaviour:
   Name: Weapon_v_02
   Sprite: {fileID: 21300000, guid: 0a4a3c212d77eb243aeaac660261fb0f, type: 3}
   BodyPartType: 8
-  Price: 0
-  Purchased: 1
+  Price: 100
+  Purchased: 0
   HasPair: 1
   Pair: {fileID: 11400000, guid: d45cc488554365e4ea317222626bbe67, type: 2}
   BaseOfPair: 0
@@ -25,3 +25,4 @@ MonoBehaviour:
   Health: 0
   Damage: 5
   Speed: 5
+  StoreIcon: {fileID: -1781452205, guid: c3cc6df80e261bb4198b6e1b2d082631, type: 3}

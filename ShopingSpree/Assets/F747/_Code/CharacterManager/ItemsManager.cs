@@ -7,6 +7,7 @@ public class ItemsManager : MonoBehaviour
     [Header("Dependencies")]
     [Header("CharacterPieces")]
     [Required][SerializeField] private CharacterPiecesSO _characterPieces;
+    [Required][SerializeField] private ScriptableEventBaseItemSO _equipItemChannel;
 
     [Header("Renderers")]
     [Required][SerializeField] private SpriteRenderer _hoodSpriteRenderer;
@@ -33,6 +34,16 @@ public class ItemsManager : MonoBehaviour
     private void Awake()
     {
         BuildDictionary();
+    }
+
+    private void OnEnable()
+    {
+        _equipItemChannel.OnRaised += UpdateSprite;
+    }
+
+    private void OnDisable()
+    {
+        _equipItemChannel.OnRaised -= UpdateSprite;
     }
 
     public void UpdateSprite(BaseItemSO newItem)
