@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 79
   Name: Weapon_v_03
-  Sprite: {fileID: 21300000, guid: 3a3f60d3a7506e54795a7bdc644550c9, type: 3}
+  Sprite: {fileID: 21300000, guid: ac0dddbcfbe1ac846ab5ba58507ed979, type: 3}
   BodyPartType: 8
   Price: 120
   Purchased: 0
