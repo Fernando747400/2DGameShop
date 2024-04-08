@@ -7,6 +7,7 @@ public class CharacterPiecesSO : ScriptableObject
     public List<BaseItemSO> HoodPieces;
     public List<BaseItemSO> HairPieces;
     public List<BaseItemSO> FacePieces;
+    public List<BaseItemSO> HeadPieces;
     public List<BaseItemSO> ShoulderPieces;
     public List<BaseItemSO> ElbowPieces;
     public List<BaseItemSO> TorsoPieces;
@@ -19,6 +20,7 @@ public class CharacterPiecesSO : ScriptableObject
     public int HoodCurrentIndex = 0;
     public int HairCurrentIndex = 0;
     public int FaceCurrentIndex = 0;
+    public int HeadCurrentIndex = 0;
     public int ShoulderCurrentIndex = 0;
     public int ElbowCurrentIndex = 0;
     public int TorsoCurrentIndex = 0;
@@ -62,6 +64,7 @@ public class CharacterPiecesSO : ScriptableObject
         HoodCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hood.ToString());
         HairCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hair.ToString());
         FaceCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Face.ToString());
+        HeadCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Head.ToString());
         ShoulderCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Shoulder.ToString());
         ElbowCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Elbow.ToString());
         TorsoCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Torso.ToString());
@@ -79,6 +82,7 @@ public class CharacterPiecesSO : ScriptableObject
             { BodyPartType.Hood, HoodPieces },
             { BodyPartType.Hair, HairPieces },
             { BodyPartType.Face, FacePieces },
+            { BodyPartType.Head, HeadPieces },
             { BodyPartType.Shoulder, ShoulderPieces },
             { BodyPartType.Elbow, ElbowPieces },
             { BodyPartType.Torso, TorsoPieces },
@@ -97,6 +101,7 @@ public class CharacterPiecesSO : ScriptableObject
             { BodyPartType.Hood, HoodCurrentIndex },
             { BodyPartType.Hair, HairCurrentIndex },
             { BodyPartType.Face, FaceCurrentIndex },
+            { BodyPartType.Head, HeadCurrentIndex },
             { BodyPartType.Shoulder, ShoulderCurrentIndex },
             { BodyPartType.Elbow, ElbowCurrentIndex },
             { BodyPartType.Torso, TorsoCurrentIndex },

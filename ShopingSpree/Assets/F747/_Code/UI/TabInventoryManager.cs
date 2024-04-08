@@ -11,6 +11,11 @@ public class TabInventoryManager : MonoBehaviour
     [SerializeField] private BodyPartType _bodyPartType;
     [SerializeField] private List<InventoryPanelManager> _inventoryPanelList;
 
+    private void Awake()
+    {
+        GetInventoryPanelList();
+    }
+
     private void OnEnable()
     {
         LoadPanels();
@@ -22,6 +27,19 @@ public class TabInventoryManager : MonoBehaviour
        for(int i = 0; i < itemsList.Count; i++)
         {
             _inventoryPanelList[i].BaseItem = itemsList[i];
+        }
+    }
+
+    private void GetInventoryPanelList()
+    {
+        _inventoryPanelList = new List<InventoryPanelManager>();
+        foreach (Transform child in transform)
+        {
+            InventoryPanelManager inventoryPanel = child.GetComponent<InventoryPanelManager>();
+            if (inventoryPanel != null)
+            {
+                _inventoryPanelList.Add(inventoryPanel);
+            }
         }
     }
 }
