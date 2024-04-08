@@ -25,3 +25,4 @@ MonoBehaviour:
   Health: 20
   Damage: 0
   Speed: 0
+  StoreIcon: {fileID: 1777269830, guid: 3a46293ccc615b54295998a8064dc406, type: 3}

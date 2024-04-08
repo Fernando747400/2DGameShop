@@ -25,6 +25,8 @@ public class BaseItemSO : ScriptableObject
     public int Damage;
     [ShowIf("GrantsExtraStats")]
     public int Speed;
+    [ShowAssetPreview(256,256)]
+    public Sprite StoreIcon;
 
 
     public void LoadInfo()

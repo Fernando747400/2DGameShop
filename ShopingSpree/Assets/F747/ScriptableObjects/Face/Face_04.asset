@@ -18,3 +18,11 @@ MonoBehaviour:
   BodyPartType: 3
   Price: 180
   Purchased: 0
+  HasPair: 0
+  Pair: {fileID: 0}
+  BaseOfPair: 0
+  GrantsExtraStats: 0
+  Health: 0
+  Damage: 0
+  Speed: 0
+  StoreIcon: {fileID: 449559357, guid: 134b8a4f795fda441a744a27b77cd2b4, type: 3}
