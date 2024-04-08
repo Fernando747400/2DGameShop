@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6d1e77df29d1b4ba96438d3175a528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterPieces: {fileID: 11400000, guid: 2266f406f7f2b5b458e07722e5a3cdf2, type: 2}
   _hoodSpriteRenderer: {fileID: 4333459745488486419}
   _hairSpriteRenderer: {fileID: 4333459745488486419}
   _headSpriteRenderer: {fileID: 8429118049545556419}
@@ -281,6 +282,7 @@ MonoBehaviour:
   _wristLeftSpriteRenderer: {fileID: 7162708205720977716}
   _wristRightSpriteRenderer: {fileID: 8729860183107907917}
   _torsoSpriteRenderer: {fileID: 8460482042135081099}
+  _pelvisSpriteRenderer: {fileID: 8490214080969885554}
   _legsLeftSpriteRenderer: {fileID: 6941634590047661140}
   _legsRightSpriteRenderer: {fileID: 1715964269655346663}
   _bootLeftSpriteRenderer: {fileID: 7293686263699204440}

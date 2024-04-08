@@ -20,6 +20,7 @@ public class ItemsManager : MonoBehaviour
     [Required][SerializeField] private SpriteRenderer _wristLeftSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _wristRightSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _torsoSpriteRenderer;
+    [Required][SerializeField] private SpriteRenderer _pelvisSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _legsLeftSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _legsRightSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _bootLeftSpriteRenderer;
@@ -34,9 +35,9 @@ public class ItemsManager : MonoBehaviour
         BuildDictionary();
     }
 
-    private void UpdateSprite(BodyPartType bodyType, BaseItemSO newItem)
+    public void UpdateSprite(BaseItemSO newItem)
     {
-        if (_spriteRendererMap.TryGetValue(bodyType, out var spriteRenderers))
+        if (_spriteRendererMap.TryGetValue(newItem.BodyPartType, out var spriteRenderers))
         {
             if (spriteRenderers.Item2 == null)
             {
@@ -79,6 +80,7 @@ public class ItemsManager : MonoBehaviour
             { BodyPartType.Elbow, (_elbowLeftSpriteRenderer, _elbowRightSpriteRenderer) },
             { BodyPartType.Wrist, (_wristLeftSpriteRenderer, _wristRightSpriteRenderer) },
             { BodyPartType.Torso, (_torsoSpriteRenderer, null) },
+            { BodyPartType.Pelvis, (_pelvisSpriteRenderer, null) },
             { BodyPartType.Leg, (_legsLeftSpriteRenderer, _legsRightSpriteRenderer) },
             { BodyPartType.Boot, (_bootLeftSpriteRenderer, _bootRightSpriteRenderer) },
             { BodyPartType.Weapon, (_weaponLeftSpriteRenderer, _weaponRightSpriteRenderer) }

@@ -28,8 +28,8 @@ public class CharacterPiecesSO : ScriptableObject
     public int BootCurrentIndex = 0;
     public int WeaponCurrentIndex = 0;
 
-    private Dictionary<BodyPartType, List<BaseItemSO>> _piecesDictionary;
-    private Dictionary<BodyPartType, int> _indexDictionary;
+    private Dictionary<BodyPartType, List<BaseItemSO>> _piecesDictionary = new Dictionary<BodyPartType, List<BaseItemSO>>();
+    private Dictionary<BodyPartType, int> _indexDictionary = new Dictionary<BodyPartType, int>();
 
     public List<BaseItemSO> GetListOf(BodyPartType partType)
     {
