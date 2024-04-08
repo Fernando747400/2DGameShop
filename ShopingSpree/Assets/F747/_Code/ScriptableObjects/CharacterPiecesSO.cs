@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ public class CharacterPiecesSO : ScriptableObject
         PlayerPrefs.SetInt(piece.ToString(), index);
     }
 
+    [Button("Load Info")]
     public void LoadInfo()
     {
         HoodCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hood.ToString());
@@ -73,6 +75,19 @@ public class CharacterPiecesSO : ScriptableObject
         LegsCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Leg.ToString());
         BootCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Boot.ToString());
         WeaponCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Weapon.ToString());
+
+        Debug.Log("HoodCurrentIndex: " + HoodCurrentIndex);
+        Debug.Log("HairCurrentIndex: " + HairCurrentIndex);
+        Debug.Log("FaceCurrentIndex: " + FaceCurrentIndex);
+        Debug.Log("HeadCurrentIndex: " + HeadCurrentIndex);
+        Debug.Log("ShoulderCurrentIndex: " + ShoulderCurrentIndex);
+        Debug.Log("ElbowCurrentIndex: " + ElbowCurrentIndex);
+        Debug.Log("TorsoCurrentIndex: " + TorsoCurrentIndex);
+        Debug.Log("WristsCurrentIndex: " + WristsCurrentIndex);
+        Debug.Log("PelvisCurrentIndex: " + PelvisCurrentIndex);
+        Debug.Log("LegsCurrentIndex: " + LegsCurrentIndex);
+        Debug.Log("BootCurrentIndex: " + BootCurrentIndex);
+        Debug.Log("WeaponCurrentIndex: " + WeaponCurrentIndex);
     }
 
     private void BuildPiecesDictionary()
@@ -111,5 +126,24 @@ public class CharacterPiecesSO : ScriptableObject
             { BodyPartType.Boot, BootCurrentIndex },
             { BodyPartType.Weapon, WeaponCurrentIndex }
         };
+    }
+
+    [Button("First Save")]
+    private void FirstSave()
+    {
+        if (PlayerPrefs.HasKey(BodyPartType.Hood.ToString())) return;
+
+        SaveInfo(BodyPartType.Hood, HoodCurrentIndex);
+        SaveInfo(BodyPartType.Hair, HairCurrentIndex);
+        SaveInfo(BodyPartType.Face, FaceCurrentIndex);       
+        SaveInfo(BodyPartType.Head, HeadCurrentIndex);
+        SaveInfo(BodyPartType.Shoulder, ShoulderCurrentIndex);
+        SaveInfo(BodyPartType.Elbow, ElbowCurrentIndex);
+        SaveInfo(BodyPartType.Torso, TorsoCurrentIndex);
+        SaveInfo(BodyPartType.Wrist, WristsCurrentIndex);
+        SaveInfo(BodyPartType.Pelvis, PelvisCurrentIndex);
+        SaveInfo(BodyPartType.Leg, LegsCurrentIndex);
+        SaveInfo(BodyPartType.Boot, BootCurrentIndex);
+        SaveInfo(BodyPartType.Weapon, WeaponCurrentIndex);
     }
 }

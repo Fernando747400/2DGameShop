@@ -26,6 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47ddd3c155f2ee24ab8b7ad21a45bf96, type: 2}
   - {fileID: 11400000, guid: 3314fa45b7cc11f499d0bcda4c9d62f7, type: 2}
   - {fileID: 11400000, guid: e0afbf1a7296b6f44be43e1f2a13cba5, type: 2}
+  HeadPieces:
+  - {fileID: 11400000, guid: 09f913230ab53e543a7514cfaa1928e6, type: 2}
   ShoulderPieces:
   - {fileID: 11400000, guid: e17738b5a1b59214180e8277f597ade2, type: 2}
   - {fileID: 11400000, guid: 85eaa563a1003a54585b34689556661f, type: 2}
@@ -80,6 +82,7 @@ MonoBehaviour:
   HoodCurrentIndex: 0
   HairCurrentIndex: 0
   FaceCurrentIndex: 0
+  HeadCurrentIndex: 0
   ShoulderCurrentIndex: 0
   ElbowCurrentIndex: 0
   TorsoCurrentIndex: 0
