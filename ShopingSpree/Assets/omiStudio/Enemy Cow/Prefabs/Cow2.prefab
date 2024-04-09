@@ -1308,6 +1308,7 @@ MonoBehaviour:
   _gamePausedChannel: {fileID: 11400000, guid: 952c7f617adbee540b4b61e3a9c35a0f, type: 2}
   _enemyAnimator: {fileID: 6975720394448396962}
   _maxHealth: {fileID: 11400000, guid: 0738ba70cc5b9d742a94e73f8ed0a7b3, type: 2}
+  _currentHealth: {fileID: 11400000, guid: 4dd5d8508fe3b604da24a55710ec4a06, type: 2}
   _attackDamage: {fileID: 11400000, guid: 6f6a2bdf740064748bce5765de6a42cc, type: 2}
   _timeBetweenAttacks: {fileID: 11400000, guid: 0af9ac088499150438e0306e4d3e5faa, type: 2}
   _attackTimeOffset: {x: 0.8, y: 1.2}

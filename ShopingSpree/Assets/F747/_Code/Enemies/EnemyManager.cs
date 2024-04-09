@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Variable Dependenices")]
     [Required][SerializeField] private Animator _enemyAnimator;
     [Required][SerializeField] private IntVariable _maxHealth;
+    [Required][SerializeField] private IntVariable _currentHealth;
     [Required][SerializeField] private IntVariable _attackDamage;
     [Required][SerializeField] private FloatVariable _timeBetweenAttacks;
 
@@ -22,7 +23,6 @@ public class EnemyManager : MonoBehaviour
 
     private float _elapsedTime = 0f;
     private float _attackTime = 15f;
-    private int _currentHealth = 50;
 
     private bool _attacking = false;
     private bool _gamePaused = false;
@@ -30,17 +30,19 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         _enemyDamageChannel.OnRaised += ReceiveDamage;
+        _gamePausedChannel.OnRaised += (bool value) => _gamePaused = value;
         AttackTimeRandomOffset();
     }
 
     private void OnDisable()
     {
         _enemyDamageChannel.OnRaised -= ReceiveDamage;
+        _gamePausedChannel.OnRaised -= (bool value) => _gamePaused = value;
     }
 
     private void Start()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth.Value = _maxHealth.Value;
     }
 
     private void Update()
@@ -80,12 +82,13 @@ public class EnemyManager : MonoBehaviour
 
     private void ReceiveDamage(int damage)
     {
-        _currentHealth -= damage;
-
-        if(_currentHealth <= 0)
+        _currentHealth.Value -= damage;
+        Debug.Log("Enemey received " +damage+ " damage. Health left: " +_currentHealth);
+        if(_currentHealth.Value <= 0)
         {
+            Debug.Log("Enemy Died");
             _enemyDeathChannel.Raise();
-            _currentHealth = _maxHealth;
+            _currentHealth.Value = _maxHealth.Value;
         }
     }
 
