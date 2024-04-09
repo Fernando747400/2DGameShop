@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Obvious.Soap;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class ItemsManager : MonoBehaviour
     [Header("CharacterPieces")]
     [Required][SerializeField] private CharacterPiecesSO _characterPieces;
     [Required][SerializeField] private ScriptableEventBaseItemSO _equipItemChannel;
+    [Required][SerializeField] private ScriptableEventNoParam _updateArmourChannel;
 
     [Header("Renderers")]
     [Required][SerializeField] private SpriteRenderer _hoodSpriteRenderer;
@@ -44,11 +46,13 @@ public class ItemsManager : MonoBehaviour
     private void OnEnable()
     {
         _equipItemChannel.OnRaised += UpdateSprite;
+        _updateArmourChannel.OnRaised += LoadArmour;
     }
 
     private void OnDisable()
     {
         _equipItemChannel.OnRaised -= UpdateSprite;
+        _updateArmourChannel.OnRaised -= LoadArmour;
     }
 
     public void UpdateSprite(BaseItemSO newItem)

@@ -7,12 +7,13 @@ public class MainPlayerManager : MonoBehaviour
 {
     [Header("Dependencies")]
     [Required][SerializeField] private Animator _playerAnimator;
+    [Required][SerializeField] private CharacterPiecesSO _characterPiecesSO;
     [Required][SerializeField] private ScriptableEventNoParam _playerDeathChannel;
     [Required][SerializeField] private ScriptableEventInt _enemyDamageChannel;
     [Required][SerializeField] private ScriptableEventInt _damagePlayerChannel;
     [Required][SerializeField] private ScriptableEventBool _gamePausedChannel;
-    [Required][SerializeField] private Slider _attackSlider;
-    [Required][SerializeField] private Slider _evadeSlider;
+    [SerializeField] private Slider _attackSlider;
+    [SerializeField] private Slider _evadeSlider;
 
     [Header("Variable Dependencies")]
     [Required][SerializeField] private FloatVariable _playerDamage;
@@ -32,21 +33,23 @@ public class MainPlayerManager : MonoBehaviour
     private bool _isEvading = false;
     private bool _gamePaused;
 
-    private void Start()
+    private void Awake()
     {
-        _playerHealth.Value = _maxHealth.Value;
+        FirstLoad();
     }
 
     private void OnEnable()
     {
         _damagePlayerChannel.OnRaised += ReceiveDamage;
         _gamePausedChannel.OnRaised += (bool value) => _gamePaused = value;
+        _playerHealth.Load();
     }
 
     private void OnDisable()
     {
         _damagePlayerChannel.OnRaised -= ReceiveDamage;
         _gamePausedChannel.OnRaised -= (bool value) => _gamePaused = value;
+        _playerHealth.Save();
     }
 
     private void Update()
@@ -126,7 +129,23 @@ public class MainPlayerManager : MonoBehaviour
 
     private void UpdateSliders()
     {
+        if(_attackSlider == null || _evadeSlider == null) return;
         _attackSlider.value = _elapsedAttackTime / _attackCooldownTime;
         _evadeSlider.value = _elapsedEvadeTime / _evadeCooldownTime;
+    }
+
+    private void FirstLoad()
+    {
+        if (!PlayerPrefs.HasKey(BodyPartType.Hood.ToString()))
+        {
+            _characterPiecesSO.FirstSave();
+            _characterPiecesSO.HardReset();
+            _characterPiecesSO.LoadInfo();
+        }
+        else
+        {
+            _characterPiecesSO.LoadInfo();
+        }
+       
     }
 }

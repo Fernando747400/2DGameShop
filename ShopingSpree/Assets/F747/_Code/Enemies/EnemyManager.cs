@@ -32,17 +32,14 @@ public class EnemyManager : MonoBehaviour
         _enemyDamageChannel.OnRaised += ReceiveDamage;
         _gamePausedChannel.OnRaised += (bool value) => _gamePaused = value;
         AttackTimeRandomOffset();
+        _currentHealth.Load();
     }
 
     private void OnDisable()
     {
         _enemyDamageChannel.OnRaised -= ReceiveDamage;
         _gamePausedChannel.OnRaised -= (bool value) => _gamePaused = value;
-    }
-
-    private void Start()
-    {
-        _currentHealth.Value = _maxHealth.Value;
+        _currentHealth.Save();
     }
 
     private void Update()

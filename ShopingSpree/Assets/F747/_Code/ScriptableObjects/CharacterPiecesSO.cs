@@ -159,7 +159,7 @@ public class CharacterPiecesSO : ScriptableObject
     }
 
     [Button("First Save")]
-    private void FirstSave()
+    public void FirstSave()
     {
         if (PlayerPrefs.HasKey(BodyPartType.Hood.ToString())) return;
 
@@ -178,7 +178,7 @@ public class CharacterPiecesSO : ScriptableObject
     }
 
     [Button("Hard Reset")]
-    private void HardReset()
+    public void HardReset()
     {
         foreach (BodyPartType bodyPart in (BodyPartType[])Enum.GetValues(typeof(BodyPartType)))
         {

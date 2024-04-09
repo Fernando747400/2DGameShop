@@ -37,7 +37,6 @@ public class SliderCurrentMax : MonoBehaviour
     private void UpdateSlider(int newValue)
     {
         _slider.value = ((float)_currentValue.Value / (float)_maxValue.Value);
-        Debug.Log("Slider values is: " + _slider.value + " when is suppossed to be: " + ((float)_currentValue.Value / (float)_maxValue.Value));
         if (_isHealthSlider)
         {
             Color color = _healthGradient.Evaluate(_slider.value);

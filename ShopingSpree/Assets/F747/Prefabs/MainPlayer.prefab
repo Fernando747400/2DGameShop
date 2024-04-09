@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterPieces: {fileID: 11400000, guid: 2266f406f7f2b5b458e07722e5a3cdf2, type: 2}
   _equipItemChannel: {fileID: 11400000, guid: 34e1737443167a144b08def7be92c5f1, type: 2}
+  _updateArmourChannel: {fileID: 11400000, guid: 83871ffc2d3cf434baf653d2ffff1be8, type: 2}
   _hoodSpriteRenderer: {fileID: 4333459745488486419}
   _headSpriteRenderer: {fileID: 8429118049545556419}
   _faceSpriteRenderer: {fileID: 7872506266741111375}
@@ -303,13 +304,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 534998232668361200}
+  _characterPiecesSO: {fileID: 11400000, guid: 2266f406f7f2b5b458e07722e5a3cdf2, type: 2}
+  _playerDeathChannel: {fileID: 11400000, guid: 4166064892276b14c9b99066ed708ee9, type: 2}
   _enemyDamageChannel: {fileID: 11400000, guid: 8b38a0d6a200e344b8aabeb28fbe5428, type: 2}
   _damagePlayerChannel: {fileID: 11400000, guid: dc924c9be10937444bcc476ded384425, type: 2}
   _gamePausedChannel: {fileID: 11400000, guid: 952c7f617adbee540b4b61e3a9c35a0f, type: 2}
+  _attackSlider: {fileID: 0}
+  _evadeSlider: {fileID: 0}
   _playerDamage: {fileID: 11400000, guid: 3d1f00c180fd59548a00801264459ab6, type: 2}
   _playerSpeed: {fileID: 11400000, guid: 88f47c7c595a54645827b52ef3c1e7f9, type: 2}
   _playerHealth: {fileID: 11400000, guid: d6850387dffd646488a4e3b8d6976390, type: 2}
   _maxHealth: {fileID: 11400000, guid: bedf9f8c76175564396bcf8715584240, type: 2}
+  _attackCooldownBySpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 50
+      value: 8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 140
+      value: 4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _evadeCooldownTime: 5
 --- !u!1 &813628873183256478
 GameObject:
   m_ObjectHideFlags: 0
