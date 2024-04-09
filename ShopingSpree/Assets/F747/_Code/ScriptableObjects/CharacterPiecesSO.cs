@@ -150,6 +150,13 @@ public class CharacterPiecesSO : ScriptableObject
             { BodyPartType.Weapon, WeaponCurrentIndex }
         };
     }
+    private void LoadPurchased(List<BaseItemSO> itemList)
+    {
+        foreach (BaseItemSO item in itemList)
+        {
+            item.LoadInfo();
+        }
+    }
 
     [Button("First Save")]
     private void FirstSave()
@@ -170,11 +177,22 @@ public class CharacterPiecesSO : ScriptableObject
         SaveInfo(BodyPartType.Weapon, WeaponCurrentIndex);
     }
 
-    private void LoadPurchased(List<BaseItemSO> itemList)
+    [Button("Hard Reset")]
+    private void HardReset()
     {
-        foreach (BaseItemSO item in itemList)
+        foreach (BodyPartType bodyPart in (BodyPartType[])Enum.GetValues(typeof(BodyPartType)))
         {
-            item.LoadInfo();
+            if (bodyPart == BodyPartType.Hair) continue;
+
+            List<BaseItemSO> itemList = GetListOf(bodyPart);
+            for(int i = 0; i < itemList.Count; i++)
+            {
+                SaveInfo(bodyPart, 0);
+
+                if (i == 0) continue;
+                itemList[i].SaveInfo(false);
+            }
         }
     }
+
 }

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class InventoryPanelManager : MonoBehaviour
 {
     [Header("Dependencies")]
-    [Required][SerializeField] private ScriptableEventBaseItemSO _equipItemChannel;
-    [Required][SerializeField] private Button _button;
-    [Required][SerializeField] private Image _iconImage;
+    [Required][SerializeField] protected ScriptableEventBaseItemSO _equipItemChannel;
+    [Required][SerializeField] protected Button _button;
+    [Required][SerializeField] protected Image _iconImage;
     
-    [SerializeField] private BaseItemSO _baseItem;
+    [SerializeField] protected BaseItemSO _baseItem;
 
     public BaseItemSO BaseItem { get => _baseItem; set { _baseItem = value; SetupItem(); } }
 
@@ -23,7 +23,7 @@ public class InventoryPanelManager : MonoBehaviour
         _button.onClick.RemoveListener(() => EquipItem());
     }
 
-    private void SetupItem()
+    protected virtual void SetupItem()
     {
         _button.interactable = false;
         _iconImage.color = Color.black;
@@ -37,7 +37,7 @@ public class InventoryPanelManager : MonoBehaviour
         _iconImage.sprite = _baseItem.StoreIcon;
     }
 
-    private void EquipItem()
+    protected void EquipItem()
     {
         _equipItemChannel.Raise(_baseItem);
     }

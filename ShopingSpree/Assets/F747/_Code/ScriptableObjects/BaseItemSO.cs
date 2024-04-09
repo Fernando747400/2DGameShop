@@ -37,6 +37,7 @@ public class BaseItemSO : ScriptableObject
 
     public void SaveInfo(bool purchased)
     {
+        Purchased = purchased;
         PlayerPrefs.SetInt(Name, purchased ? 1 : 0);
     }
 }

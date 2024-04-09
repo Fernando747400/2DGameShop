@@ -11,7 +11,7 @@ public class TabInventoryManager : MonoBehaviour
     [SerializeField] private bool _hideEmptyPanels = true;
     [SerializeField] private BodyPartType _bodyPartType;
 
-    private List<InventoryPanelManager> _inventoryPanelList;
+    private List<InventoryPanelManager> _inventoryPanelList  = new List<InventoryPanelManager>();
 
     private void Awake()
     {
@@ -36,7 +36,6 @@ public class TabInventoryManager : MonoBehaviour
 
     private void GetInventoryPanelList()
     {
-        _inventoryPanelList = new List<InventoryPanelManager>();
         foreach (Transform child in transform)
         {
             InventoryPanelManager inventoryPanel = child.GetComponent<InventoryPanelManager>();
