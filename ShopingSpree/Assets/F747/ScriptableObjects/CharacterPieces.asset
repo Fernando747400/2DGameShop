@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42139e1db7eda647ae8d7926675a6fd, type: 3}
   m_Name: CharacterPieces
   m_EditorClassIdentifier: 
+  _armourUpdatedChannel: {fileID: 11400000, guid: bbbeeaa80a26f494dac8d3fb3bb36436, type: 2}
   HoodPieces:
+  - {fileID: 11400000, guid: 33eb630c116b340448c14806a1341f33, type: 2}
   - {fileID: 11400000, guid: f1bd80d4b5c098046a4982f5571c8875, type: 2}
   - {fileID: 11400000, guid: 7d484f6c707a8ef429d6fbaa5f078aa8, type: 2}
   - {fileID: 11400000, guid: 9ab3336a3f14c8246aca45ae74f4fb1c, type: 2}
   - {fileID: 11400000, guid: c35e36e7db2066a4a938dc104f8108b0, type: 2}
   - {fileID: 11400000, guid: eb2c83542cbc24346814d0e0674ddcef, type: 2}
-  HairPieces:
-  - {fileID: 11400000, guid: 33eb630c116b340448c14806a1341f33, type: 2}
   FacePieces:
   - {fileID: 11400000, guid: 6a236e5cfe3365242a1296f3f045cd92, type: 2}
   - {fileID: 11400000, guid: 13ba16a8630405e41b3712cebd4df4e9, type: 2}
@@ -80,7 +80,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 785ea3949a0af9344a264e0f45e2b896, type: 2}
   - {fileID: 11400000, guid: 3209cd4787c439a42a4f79e13d46dd33, type: 2}
   HoodCurrentIndex: 0
-  HairCurrentIndex: 0
   FaceCurrentIndex: 0
   HeadCurrentIndex: 0
   ShoulderCurrentIndex: 0

@@ -8,8 +8,10 @@ public class TabInventoryManager : MonoBehaviour
     [Required][SerializeField] private CharacterPiecesSO _characterPieces;
 
     [Header("Settings")]
+    [SerializeField] private bool _hideEmptyPanels = true;
     [SerializeField] private BodyPartType _bodyPartType;
-    [SerializeField] private List<InventoryPanelManager> _inventoryPanelList;
+
+    private List<InventoryPanelManager> _inventoryPanelList;
 
     private void Awake()
     {
@@ -18,7 +20,9 @@ public class TabInventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Enableall();
         LoadPanels();
+        if(_hideEmptyPanels) UpdateActives(); //Change this to hide or unhide panels that dont have an item.
     }
 
     private void LoadPanels()
@@ -40,6 +44,29 @@ public class TabInventoryManager : MonoBehaviour
             {
                 _inventoryPanelList.Add(inventoryPanel);
             }
+        }
+    }
+
+    private void UpdateActives()
+    {
+        foreach (InventoryPanelManager panel in _inventoryPanelList)
+        {
+            if (panel.BaseItem == null)
+            {
+                panel.gameObject.SetActive(false);
+            }
+            else
+            {
+                panel.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void Enableall()
+    {
+        foreach (InventoryPanelManager panel in _inventoryPanelList)
+        {
+            panel.gameObject.SetActive(true);
         }
     }
 }

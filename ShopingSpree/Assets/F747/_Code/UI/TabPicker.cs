@@ -21,6 +21,7 @@ public class TabPicker : MonoBehaviour
             _tabButtonList[i].onClick.AddListener(() => ToggleTab(index));
         }
         ChangeButtonSprite(_tabButtonList[_activeTabIndex], _activeButtonSprite);
+        ToggleTab(_activeTabIndex);
     }
 
     private void OnDisable()

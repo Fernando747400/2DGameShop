@@ -38,7 +38,7 @@ public class ItemsManager : MonoBehaviour
 
     private void Start()
     {
-        _characterPieces.LoadInfo();
+        LoadArmour();
     }
 
     private void OnEnable()
@@ -63,6 +63,14 @@ public class ItemsManager : MonoBehaviour
             {
                 LeftRightSpriteRendererUpdate(spriteRenderers.Item1, spriteRenderers.Item2, newItem);
             }
+        }
+    }
+
+    private void LoadArmour()
+    {
+        foreach(BaseItemSO baseItem in _characterPieces.GetAllCurrentItems())
+        {
+            UpdateSprite(baseItem);
         }
     }
 
@@ -102,4 +110,6 @@ public class ItemsManager : MonoBehaviour
             { BodyPartType.Weapon, (_weaponLeftSpriteRenderer, _weaponRightSpriteRenderer) }
         };
     }
+
+
 }

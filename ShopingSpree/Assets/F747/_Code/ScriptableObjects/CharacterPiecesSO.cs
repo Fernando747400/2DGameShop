@@ -94,6 +94,7 @@ public class CharacterPiecesSO : ScriptableObject
 
     public List<BaseItemSO> GetAllCurrentItems()
     {
+        LoadInfo();
         List<BaseItemSO> currentItems = new List<BaseItemSO>();
 
         currentItems.Add(HoodPieces[HoodCurrentIndex]);
