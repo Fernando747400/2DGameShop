@@ -11,7 +11,7 @@ public class ItemsManager : MonoBehaviour
 
     [Header("Renderers")]
     [Required][SerializeField] private SpriteRenderer _hoodSpriteRenderer;
-    [Required][SerializeField] private SpriteRenderer _hairSpriteRenderer;
+    //[Required][SerializeField] private SpriteRenderer _hairSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _headSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _faceSpriteRenderer;
     [Required][SerializeField] private SpriteRenderer _shoulderLeftSpriteRenderer;
@@ -34,6 +34,11 @@ public class ItemsManager : MonoBehaviour
     private void Awake()
     {
         BuildDictionary();
+    }
+
+    private void Start()
+    {
+        _characterPieces.LoadInfo();
     }
 
     private void OnEnable()
@@ -84,7 +89,7 @@ public class ItemsManager : MonoBehaviour
         _spriteRendererMap = new Dictionary<BodyPartType, (SpriteRenderer, SpriteRenderer)>
         {
             { BodyPartType.Hood, (_hoodSpriteRenderer, null) },
-            { BodyPartType.Hair, (_hairSpriteRenderer, null) },
+            //{ BodyPartType.Hair, (_hairSpriteRenderer, null) },
             { BodyPartType.Head, (_headSpriteRenderer, null) },
             { BodyPartType.Face, (_faceSpriteRenderer, null) },
             { BodyPartType.Shoulder, (_shoulderLeftSpriteRenderer, _shoulderRightSpriteRenderer) },

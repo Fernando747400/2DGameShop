@@ -1,12 +1,17 @@
 using NaughtyAttributes;
+using Obvious.Soap;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Character Pieces List", menuName = "ShoopingSpree/Character Pieces List")]
 public class CharacterPiecesSO : ScriptableObject
 {
+    [Header("Dependencies")]
+    [Required][SerializeField] private ScriptableEventNoParam _armourUpdatedChannel;
+
     public List<BaseItemSO> HoodPieces;
-    public List<BaseItemSO> HairPieces;
+    //public List<BaseItemSO> HairPieces;
     public List<BaseItemSO> FacePieces;
     public List<BaseItemSO> HeadPieces;
     public List<BaseItemSO> ShoulderPieces;
@@ -19,7 +24,7 @@ public class CharacterPiecesSO : ScriptableObject
     public List<BaseItemSO> WeaponPieces;
 
     public int HoodCurrentIndex = 0;
-    public int HairCurrentIndex = 0;
+    //public int HairCurrentIndex = 0;
     public int FaceCurrentIndex = 0;
     public int HeadCurrentIndex = 0;
     public int ShoulderCurrentIndex = 0;
@@ -57,6 +62,7 @@ public class CharacterPiecesSO : ScriptableObject
 
     public void SaveInfo(BodyPartType piece, int index)
     {
+        _armourUpdatedChannel.Raise();
         PlayerPrefs.SetInt(piece.ToString(), index);
     }
 
@@ -64,7 +70,7 @@ public class CharacterPiecesSO : ScriptableObject
     public void LoadInfo()
     {
         HoodCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hood.ToString());
-        HairCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hair.ToString());
+        //HairCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Hair.ToString());
         FaceCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Face.ToString());
         HeadCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Head.ToString());
         ShoulderCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Shoulder.ToString());
@@ -76,18 +82,34 @@ public class CharacterPiecesSO : ScriptableObject
         BootCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Boot.ToString());
         WeaponCurrentIndex = PlayerPrefs.GetInt(BodyPartType.Weapon.ToString());
 
-        Debug.Log("HoodCurrentIndex: " + HoodCurrentIndex);
-        Debug.Log("HairCurrentIndex: " + HairCurrentIndex);
-        Debug.Log("FaceCurrentIndex: " + FaceCurrentIndex);
-        Debug.Log("HeadCurrentIndex: " + HeadCurrentIndex);
-        Debug.Log("ShoulderCurrentIndex: " + ShoulderCurrentIndex);
-        Debug.Log("ElbowCurrentIndex: " + ElbowCurrentIndex);
-        Debug.Log("TorsoCurrentIndex: " + TorsoCurrentIndex);
-        Debug.Log("WristsCurrentIndex: " + WristsCurrentIndex);
-        Debug.Log("PelvisCurrentIndex: " + PelvisCurrentIndex);
-        Debug.Log("LegsCurrentIndex: " + LegsCurrentIndex);
-        Debug.Log("BootCurrentIndex: " + BootCurrentIndex);
-        Debug.Log("WeaponCurrentIndex: " + WeaponCurrentIndex);
+        foreach (BodyPartType bodyPart in (BodyPartType[])Enum.GetValues(typeof(BodyPartType)))
+        {
+            if (bodyPart == BodyPartType.Hair) continue;
+            foreach (BaseItemSO baseItem in GetListOf(bodyPart))
+            {
+                baseItem.LoadInfo();
+            }
+        }
+    }
+
+    public List<BaseItemSO> GetAllCurrentItems()
+    {
+        List<BaseItemSO> currentItems = new List<BaseItemSO>();
+
+        currentItems.Add(HoodPieces[HoodCurrentIndex]);
+        //currentItems.Add(HairPieces[HairCurrentIndex]);
+        currentItems.Add(FacePieces[FaceCurrentIndex]);
+        currentItems.Add(HeadPieces[HeadCurrentIndex]);
+        currentItems.Add(ShoulderPieces[ShoulderCurrentIndex]);
+        currentItems.Add(ElbowPieces[ElbowCurrentIndex]);
+        currentItems.Add(TorsoPieces[TorsoCurrentIndex]);
+        currentItems.Add(WristPieces[WristsCurrentIndex]);
+        currentItems.Add(PelvisPieces[PelvisCurrentIndex]);
+        currentItems.Add(LegsPieces[LegsCurrentIndex]);
+        currentItems.Add(BootPieces[BootCurrentIndex]);
+        currentItems.Add(WeaponPieces[WeaponCurrentIndex]);
+
+        return currentItems;
     }
 
     private void BuildPiecesDictionary()
@@ -95,7 +117,7 @@ public class CharacterPiecesSO : ScriptableObject
         _piecesDictionary = new Dictionary<BodyPartType, List<BaseItemSO>>
         {
             { BodyPartType.Hood, HoodPieces },
-            { BodyPartType.Hair, HairPieces },
+            //{ BodyPartType.Hair, HairPieces },
             { BodyPartType.Face, FacePieces },
             { BodyPartType.Head, HeadPieces },
             { BodyPartType.Shoulder, ShoulderPieces },
@@ -114,7 +136,7 @@ public class CharacterPiecesSO : ScriptableObject
         _indexDictionary = new Dictionary<BodyPartType, int>
         {
             { BodyPartType.Hood, HoodCurrentIndex },
-            { BodyPartType.Hair, HairCurrentIndex },
+           //{ BodyPartType.Hair, HairCurrentIndex },
             { BodyPartType.Face, FaceCurrentIndex },
             { BodyPartType.Head, HeadCurrentIndex },
             { BodyPartType.Shoulder, ShoulderCurrentIndex },
@@ -134,7 +156,7 @@ public class CharacterPiecesSO : ScriptableObject
         if (PlayerPrefs.HasKey(BodyPartType.Hood.ToString())) return;
 
         SaveInfo(BodyPartType.Hood, HoodCurrentIndex);
-        SaveInfo(BodyPartType.Hair, HairCurrentIndex);
+        //SaveInfo(BodyPartType.Hair, HairCurrentIndex);
         SaveInfo(BodyPartType.Face, FaceCurrentIndex);       
         SaveInfo(BodyPartType.Head, HeadCurrentIndex);
         SaveInfo(BodyPartType.Shoulder, ShoulderCurrentIndex);
@@ -145,5 +167,13 @@ public class CharacterPiecesSO : ScriptableObject
         SaveInfo(BodyPartType.Leg, LegsCurrentIndex);
         SaveInfo(BodyPartType.Boot, BootCurrentIndex);
         SaveInfo(BodyPartType.Weapon, WeaponCurrentIndex);
+    }
+
+    private void LoadPurchased(List<BaseItemSO> itemList)
+    {
+        foreach (BaseItemSO item in itemList)
+        {
+            item.LoadInfo();
+        }
     }
 }
