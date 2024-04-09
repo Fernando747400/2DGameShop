@@ -89,7 +89,7 @@ public class StoreManager : MonoBehaviour
     {
         if(_currentItem != null)
         {
-            _iconImage.sprite = _currentItem.Sprite;
+            _iconImage.sprite = _currentItem.StoreIcon;
         }
         else
         {
